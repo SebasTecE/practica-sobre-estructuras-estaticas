@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// prototipos
 void crearTablero(char tablero[3][3]);
 void mostrarTablero(char tablero[3][3]);
 void pedirJugada(char tablero[3][3], char jugador, int &fila, int &columna);
@@ -17,6 +18,7 @@ int main() {
 
     cout << "=== JUEGO DEL GATO ===" << endl;
 
+    // ciclo principal del juego
     while (!juegoTerminado) {
         mostrarTablero(tablero);
 
@@ -24,6 +26,7 @@ int main() {
 
         tablero[fila - 1][columna - 1] = jugador;
 
+        // revisa si el jugador gano
         if (hayGanador(tablero, jugador)) {
             mostrarTablero(tablero);
             cout << "Felicidades, gana el jugador " << jugador << "!" << endl;
@@ -34,6 +37,8 @@ int main() {
             cout << "Empate, no quedan casillas libres." << endl;
             juegoTerminado = true;
         }
+
+        // alterar turno
         else {
             if (jugador == 'X') jugador = 'O';
             else jugador = 'X';
@@ -42,6 +47,10 @@ int main() {
 
     return 0;
 }
+
+// definiciones
+
+// 
 void crearTablero(char tablero[3][3]) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -62,6 +71,9 @@ void mostrarTablero(char tablero[3][3]) {
     }
     cout << endl;
 }
+
+// Pide fila y columna hasta que la jugada sea valida:
+// 1) dentro del tablero (1-3), 2) casilla libre, 3) entrada numerica
 void pedirJugada(char tablero[3][3], char jugador, int &fila, int &columna) {
     bool valida = false;
 
@@ -87,6 +99,8 @@ void pedirJugada(char tablero[3][3], char jugador, int &fila, int &columna) {
         }
     }
 }
+
+// Revisa las 3 filas, las 3 columnas y las 2 diagonales
 bool hayGanador(char tablero[3][3], char jugador) {
     for (int i = 0; i < 3; i++) {
         // Fila i
@@ -103,6 +117,8 @@ bool hayGanador(char tablero[3][3], char jugador) {
 
     return false;
 }
+
+// Hay empate si no queda ninguna casilla libre
 bool hayEmpate(char tablero[3][3]) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
