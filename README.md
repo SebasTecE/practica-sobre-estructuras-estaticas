@@ -1,1 +1,1 @@
-# practica-sobre-estructuras-est-ticas
+# practica-sobre-estructuras-estaticas
